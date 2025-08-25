@@ -212,6 +212,16 @@ namespace McpUnity.Unity
                 McpUtils.RunNpmCommand("run build", serverPath);
             }
         }
+
+        /// <summary>
+        /// Register user defined tool
+        /// </summary>
+        public void RegisterTool(McpToolBase tool)
+        {
+            if (tool == null || string.IsNullOrWhiteSpace(tool.Name))
+                throw new ArgumentException("Invalid tool");
+            _tools[tool.Name] = tool;
+        }
         
         /// <summary>
         /// Register all available tools
@@ -253,6 +263,24 @@ namespace McpUnity.Unity
             // Register CreatePrefabTool
             CreatePrefabTool createPrefabTool = new CreatePrefabTool();
             _tools.Add(createPrefabTool.Name, createPrefabTool);
+
+            DiscoverExternalTools();
+        }
+
+        private void DiscoverExternalTools()
+        {
+            var toolType = typeof(McpToolBase);
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (var t in asm.GetTypes())
+                {
+                    if (t.IsAbstract || !toolType.IsAssignableFrom(t)) continue;
+                    var hasAttribute = t.GetCustomAttributes(typeof(AutoRegisterToolAttribute), inherit:false).Length > 0;
+                    if (!hasAttribute) continue;
+                    var instance = (McpToolBase)Activator.CreateInstance(t);
+                    RegisterTool(instance);
+                }
+            }
         }
         
         /// <summary>
@@ -365,4 +393,7 @@ namespace McpUnity.Unity
             }
         }
     }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class AutoRegisterToolAttribute : Attribute {}
 }
