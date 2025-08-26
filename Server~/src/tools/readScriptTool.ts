@@ -3,10 +3,11 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { Logger } from "../utils/logger.js";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
+import { findProjectRoot } from "../utils/projectRoot.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 
 // ---- config & guards ----
-const projectRoot = path.resolve(process.cwd());
+const projectRoot = findProjectRoot();
 const assetsRoot = path.join(projectRoot, "Assets");
 const packagesRoot = path.join(projectRoot, "Packages");
 const packageCacheRoot = path.join(projectRoot, "Library", "PackageCache");
