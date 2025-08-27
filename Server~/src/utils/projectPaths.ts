@@ -97,7 +97,8 @@ const TEXT_EXTS = new Set([
   // assets
   ".unity", ".asset", ".prefab",
   ".mat", ".vfx", ".lighting", ".giparams",
-  ".controller", ".playable", ".inputactions",
+  ".controller", "overrideController",
+  ".playable", ".timeline", ".inputactions",
   // code-ish
   ".js",".ts",".jsx",".tsx",".c",".h",".hpp",".cpp",".mm",".m",".gradle",".bat",".ps1",".sh"
 ]);

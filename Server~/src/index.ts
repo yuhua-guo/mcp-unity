@@ -23,7 +23,9 @@ import { registerGetGameObjectResource } from './resources/getGameObjectResource
 import { registerGameObjectHandlingPrompt } from './prompts/gameobjectHandlingPrompt.js';
 import { registerReadTextTool } from "./tools/readTextTool.js";
 import { registerWriteTextTool } from "./tools/writeTextTool.js";
-import { registerListEntriesTool } from "./tools/listEntriesTool.js";
+import { registerSearchTextTool } from "./tools/searchTextTool.js";
+import { registerSearchClassTool } from "./tools/searchClassTool.js";
+import { registerFindGuidTool } from "./tools/findGuidTool.js";
 
 // Initialize loggers
 const serverLogger = new Logger('Server', LogLevel.INFO);
@@ -62,7 +64,9 @@ registerUpdateGameObjectTool(server, mcpUnity, toolLogger);
 registerCreatePrefabTool(server, mcpUnity, toolLogger);
 registerReadTextTool(server, toolLogger);
 registerWriteTextTool(server, toolLogger);
-registerListEntriesTool(server, toolLogger);
+registerSearchTextTool(server, toolLogger);
+registerSearchClassTool(server, toolLogger);
+registerFindGuidTool(server, toolLogger);
 
 // Register all resources into the MCP server
 registerGetTestsResource(server, mcpUnity, resourceLogger);
