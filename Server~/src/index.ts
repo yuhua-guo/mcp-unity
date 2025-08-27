@@ -21,8 +21,9 @@ import { registerGetAssetsResource } from './resources/getAssetsResource.js';
 import { registerGetTestsResource } from './resources/getTestsResource.js';
 import { registerGetGameObjectResource } from './resources/getGameObjectResource.js';
 import { registerGameObjectHandlingPrompt } from './prompts/gameobjectHandlingPrompt.js';
-import { registerReadScriptTool } from "./tools/readScriptTool.js";
-import { registerWriteScriptTool } from "./tools/writeScriptTool.js";
+import { registerReadTextTool } from "./tools/readTextTool.js";
+import { registerWriteTextTool } from "./tools/writeTextTool.js";
+import { registerListEntriesTool } from "./tools/listEntriesTool.js";
 
 // Initialize loggers
 const serverLogger = new Logger('Server', LogLevel.INFO);
@@ -59,8 +60,9 @@ registerUpdateComponentTool(server, mcpUnity, toolLogger);
 registerAddAssetToSceneTool(server, mcpUnity, toolLogger);
 registerUpdateGameObjectTool(server, mcpUnity, toolLogger);
 registerCreatePrefabTool(server, mcpUnity, toolLogger);
-registerReadScriptTool(server, toolLogger);
-registerWriteScriptTool(server, toolLogger);
+registerReadTextTool(server, toolLogger);
+registerWriteTextTool(server, toolLogger);
+registerListEntriesTool(server, toolLogger);
 
 // Register all resources into the MCP server
 registerGetTestsResource(server, mcpUnity, resourceLogger);
