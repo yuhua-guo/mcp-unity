@@ -38,6 +38,7 @@
     "@modelcontextprotocol/sdk": "^1.7.0",
     "axios": "^1.8.4",
     "cors": "^2.8.5",
+    "diff": "^8.0.2",
     "express": "^5.0.1",
     "uuid": "^11.1.0",
     "winreg": "^1.2.5",
